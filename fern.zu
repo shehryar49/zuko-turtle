@@ -1,0 +1,35 @@
+import turtle
+
+function fern(var size,var sign)
+{
+    if (size<1)
+      return nil
+    turtle.setPenSize(size/4)
+    turtle.forward(size)
+    turtle.right(70*sign)
+    fern(size/2,sign*(-1))
+    turtle.setPenSize(size/4)
+    turtle.left(70*sign)
+    turtle.forward(size)
+    turtle.left(70*sign)
+    fern(size/2,sign)
+    turtle.setPenSize(size/4)
+    turtle.right(77*sign)
+    fern(size-1,sign)
+    turtle.right(173*sign)
+    turtle.penUp()
+    turtle.forward(size*2)
+    turtle.penDown()
+    turtle.left(180)
+}
+
+turtle.setWindowSize(640,480)
+turtle.penUp()
+turtle.goto(192,450)
+turtle.setAngle(0)
+turtle.penDown()
+turtle.setColor(0,60,0)
+turtle.setSpeed(100000)
+fern(25,1)
+
+turtle.done()
