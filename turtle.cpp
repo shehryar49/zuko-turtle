@@ -8,28 +8,28 @@ ZObject init()
     nil.type = 'n';
     Module* d = vm_allocModule();
     d->name = "turtle";
-    d->members.emplace(("setWindowSize"), ZObjFromFunction("turtle.setWindowSize", &setWindowSize));
-    d->members.emplace(("closeWindow"), ZObjFromFunction("turtle.closeWindow", &closeWindow));
-    d->members.emplace(("penUp"), ZObjFromFunction("turtle.penUp", &penUp));
-    d->members.emplace(("penDown"), ZObjFromFunction("turtle.penDown", &penDOWN));
-    d->members.emplace(("setPenSize"), ZObjFromFunction("turtle.setPenSize", &setPenSize));
-    d->members.emplace(("goto"), ZObjFromFunction("turtle.goto", &GOTO));
-    d->members.emplace(("moveto"), ZObjFromFunction("turtle.moveto", &moveto));
-    d->members.emplace(("left"), ZObjFromFunction("turtle.left", &left));
-    d->members.emplace(("right"), ZObjFromFunction("turtle.right", &right));
-    d->members.emplace(("forward"), ZObjFromFunction("turtle.forward", &forward));
-    d->members.emplace(("backward"), ZObjFromFunction("turtle.backward", &backward));
-    d->members.emplace(("setAngle"), ZObjFromFunction("turtle.setAngle", &setAngle));
-    d->members.emplace(("circle"), ZObjFromFunction("turtle.circle", &circle));
-    d->members.emplace(("filled_circle"), ZObjFromFunction("turtle.filled_circle", &filled_circle));
-    d->members.emplace(("setBgColor"), ZObjFromFunction("turtle.setBgColor", &setBgColor));
-    d->members.emplace(("setSpeed"), ZObjFromFunction("turtle.setSpeed", &setSpeed));
-    d->members.emplace(("hide"), ZObjFromFunction("turtle.hide", &hide));
-    d->members.emplace(("show"), ZObjFromFunction("turtle.show", &show));
-    d->members.emplace(("fill"), ZObjFromFunction("turtle.fill", &fill));
-    d->members.emplace(("saveBMP"), ZObjFromFunction("turtle.saveBMP", &saveBMP));
-    d->members.emplace(("setColor"), ZObjFromFunction("turtle.setColor", &setColor));
-    d->members.emplace(("done"), ZObjFromFunction("turtle.done", &idle));
+    Module_addNativeFun(d,("setWindowSize"), &setWindowSize);
+    Module_addNativeFun(d,("closeWindow"), &closeWindow);
+    Module_addNativeFun(d,("penUp"), &penUp);
+    Module_addNativeFun(d,("penDown"),&penDOWN);
+    Module_addNativeFun(d,("setPenSize"),&setPenSize);
+    Module_addNativeFun(d,("goto"),&GOTO);
+    Module_addNativeFun(d,("moveto"),&moveto);
+    Module_addNativeFun(d,("left"),&left);
+    Module_addNativeFun(d,("right"), &right);
+    Module_addNativeFun(d,("forward"),&forward);
+    Module_addNativeFun(d,("backward"),&backward);
+    Module_addNativeFun(d,("setAngle"),&setAngle);
+    Module_addNativeFun(d,("circle"),&circle);
+    Module_addNativeFun(d,("filled_circle"),&filled_circle);
+    Module_addNativeFun(d,("setBgColor"),&setBgColor);
+    Module_addNativeFun(d,("setSpeed"),&setSpeed);
+    Module_addNativeFun(d,("hide"),&hide);
+    Module_addNativeFun(d,("show"),&show);
+    Module_addNativeFun(d,("fill"),&fill);
+    Module_addNativeFun(d,("saveBMP"),&saveBMP);
+    Module_addNativeFun(d,("setColor"),&setColor);
+    Module_addNativeFun(d,("done"),&idle);
 
     return ZObjFromModule(d);
 }
@@ -307,7 +307,7 @@ ZObject saveBMP(ZObject* args,int n)
     }
     if(args[0].type=='s')
     {
-        t_saveBMP((char*)((string*)args[0].ptr)->c_str());
+        t_saveBMP(AS_STR(args[0])->val);
     }
     else
     {
