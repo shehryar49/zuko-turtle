@@ -3,7 +3,11 @@ project(turtle)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_SHARED_LIBRARY_PREFIX "")
 add_library(turtle SHARED turtle.cpp turtle.h CTurtle-master/turtle.c CTurtle-master/turtle.h)
-target_link_libraries(turtle -lSDL2)
+find_package(SDL2 REQUIRED)
+
+include_directories(turtle ${SDL2_INCLUDE_DIRS})
+target_link_libraries(turtle ${SDL2_LIBRARIES})
+
 if(UNIX)
   include_directories(/opt/zuko/include)
 endif()
