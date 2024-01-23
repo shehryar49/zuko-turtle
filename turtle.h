@@ -2,6 +2,17 @@
 #ifdef _WIN32
   #include "zapi.h"
   #define EXPORT __declspec(dllexport)
+  // used from VCPKG
+  #pragma comment(lib, "SDL2-static.lib")
+  #pragma comment(lib, "manual-link\\SDL2Main.lib")
+	#pragma comment(lib, "winmm.lib")
+	#pragma comment(lib, "version.lib")
+	#pragma comment(lib, "opengl32.lib")
+	#pragma comment(lib, "gdi32.lib")
+	#pragma comment(lib, "user32.lib")
+	#pragma comment(lib, "imm32.lib")
+	#pragma comment(lib, "Setupapi.lib")
+
 #else
   #include "zapi.h"
   #define EXPORT
