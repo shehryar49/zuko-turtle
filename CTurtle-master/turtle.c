@@ -104,7 +104,7 @@ const unsigned int turtleRawData[384] =
     0xFF000000, 0xFF000000, 0xFF000000, 0xFF000000, 0xFF000000, 0xFF000000, 0xFF000000, 0xFF000000,
 };
 
-double min(double a,double b)
+/*double min(double a,double b)
 {
     return (a<=b) ? a : b;
 }
@@ -113,7 +113,7 @@ double max(double a,double b)
 {
     return (a>=b) ? a : b;
 }
-
+*/
 double abs_d(double n)
 {
     return (n>=0) ? n : -n;
@@ -632,7 +632,7 @@ void fillAlpha(int x,int y)
     memset(fillmap,true,fillmapSize);
     if(FILLALPHACHECK) {
 
-        int PixelArray[scr_h*scr_w];
+        int* PixelArray = malloc(sizeof(int)*(scr_h*scr_w));
 
         PixelArray[0] = (y << 16) + x;
         int Arraysize = 1;
@@ -673,7 +673,8 @@ void fillAlpha(int x,int y)
                 }
             }
         }
-    }
+        free(PixelArray);    
+		}
 }
 
 void fillColorSetColor(color* c)
@@ -692,7 +693,7 @@ void fillColor(int x,int y,color original)
     memset(fillmap,true,fillmapSize);
     if(FILLCOLORCHECK) {
 
-        int PixelArray[scr_h*scr_w];
+        int* PixelArray = malloc(sizeof(int)*(scr_h*scr_w));
 
         PixelArray[0] = (y << 16) + x;
         int Arraysize = 1;
@@ -733,7 +734,8 @@ void fillColor(int x,int y,color original)
                 }
             }
         }
-    }
+        free(PixelArray);
+		}
 }
 
 
